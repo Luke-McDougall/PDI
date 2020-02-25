@@ -1,0 +1,11 @@
+ 6738  cd Documents
+ 6739  mkdir PDI
+ 6740  cd PDI
+ 6741  mkdir P01
+ 6742  cd P01
+ 6743  vim calculator.txt
+ 6744  vim calculator.java
+ 6745  mv calculator.java Calculator.java
+ 6746  vim Calculator.java
+ 6747  javac Calculator.java
+ 6748  java Calculator
