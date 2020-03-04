@@ -1,0 +1,10 @@
+START Converter
+      MAIN:
+        OUTPUT "Please enter the temperature in Celsius: "
+        INPUT celsius
+
+        fahrenheit = (9 / 5) * celsius + 32
+
+        OUTPUT celsius + " degrees Celsius = " + fahrenheit + " degrees Fahrenheit"
+      END MAIN
+END
