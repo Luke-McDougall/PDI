@@ -1,0 +1,12 @@
+START CharConverter
+    MAIN:
+        OUTPUT "Please enter an upper case character: "
+        INPUT ascii 
+
+        uppercase = (Character) ascii;
+        lowercase = (Character) (ascii + 32);
+
+        OUTPUT "The ascii value of " + uppercase + " is: " + ascii
+        OUTPUT "The lowercase value of " + uppercase + " is: " + lowercase
+    END MAIN
+END
