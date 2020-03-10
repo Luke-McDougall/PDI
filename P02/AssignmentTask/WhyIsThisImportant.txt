@@ -1,0 +1,4 @@
+Char datatype in Java does not allow arithmetic operations. ASCII values are useful if you want to be able to
+perform arithmetic operations on char values e.g. converting an uppercase letter to lowercase by adding 32 to
+it. It also makes checking if any paricular byte can represent a valid char easy because there is a defined
+range of ASCII values that represent alphanumeric characters.
