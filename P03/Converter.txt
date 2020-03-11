@@ -1,0 +1,18 @@
+START Converter
+    MAIN:
+
+        OUTPUT "What temperature scale are you working with?"
+        OUTPUT "    > (C)elsius"
+        OUTPUT "    > (F)ahrenheit"
+
+        IF choice == 'c' || choice == 'C' THEN
+            INPUT celsius 
+            fahrenheit = (9.0 / 5.0) * celsius + 32.0
+            OUTPUT celsius + " degrees Celsius = " + fahrenheit + " degrees Fahrenheit"
+        ELSE IF choice == 'f' || choice == 'F' THEN
+            INPUT fahrenheit 
+            celsius = (5.0 / 9.0) * (fahrenheit - 32.0)
+            OUTPUT fahrenheit + " degrees Fahrenheit = " + celsius + " degrees Celsius"
+        END IF
+    END MAIN
+End Converter
