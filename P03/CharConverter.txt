@@ -1,0 +1,20 @@
+START CharConverter
+    MAIN:
+        OUTPUT "Please enter an upper case character: "
+        INPUT ascii (Integer)
+
+        character := (Character) ascii
+
+        IF (ascii >= (Integer) 'a' AND ascii <= (Integer) 'z') THEN
+            uppercase := (Character) (ascii - 32)
+            OUTPUT "The value of " + character + " is " + ascii
+            OUTPUT "The uppercase value of " + character + " is " + uppercase
+        ELSE IF (ascii >= (Integer) 'A' AND ascii <= (Integer) 'Z') THEN
+            lowercase := (Character) (ascii + 32)
+            OUTPUT "The value of " + character + " is " + ascii
+            OUTPUT "The lowercase value of " + character + " is " + lowercase
+        ELSE
+            OUTPUT "Invalid input please enter a lowercase or uppercase character"
+        END IF
+    END MAIN
+END

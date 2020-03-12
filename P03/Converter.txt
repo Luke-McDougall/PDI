@@ -1,6 +1,5 @@
 START Converter
     MAIN:
-
         OUTPUT "What temperature scale are you working with?"
         OUTPUT "    > (C)elsius"
         OUTPUT "    > (F)ahrenheit"
