@@ -1,3 +1,5 @@
+Boolean Expressions.
+
 a) susan.equals("sarah");
 b) (lucas % 2 == 0) && (scott % 2 != 0)
 c) john == 'S' || matthew == 'S'
