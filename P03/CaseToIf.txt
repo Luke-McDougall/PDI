@@ -1,0 +1,15 @@
+OUTPUT "Please enter the direction you would like to go in
+        (L) left, (R) right, (U) up, (D) down "
+INPUT direction (Character)
+
+IF (direction = 'L' OR direction = 'l')
+   OUTPUT "Going west"
+ELSE IF (direction = 'R' OR direction = 'r')
+   OUTPUT "Going east"
+ELSE IF (direction = 'U' OR direction = 'u')
+   OUTPUT "Going up"
+ELSE IF (direction = 'D' OR direction = 'd')
+   OUTPUT "Going down"
+ELSE
+   OUTOUT "Going nowhere"
+END IF

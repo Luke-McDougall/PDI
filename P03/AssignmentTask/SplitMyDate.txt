@@ -1,0 +1,42 @@
+START SplitMyDate
+    MAIN:
+        months = ["January", "February", "March", "April", "May", "June",
+                  "July", "August", "September", "October", "November", "December"]
+        num_days_in_month = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
+
+        INPUT "Please enter the date in the format DDMMYYYY"
+        INPUT date (Integer)
+        year  := date MOD 10000
+        month := (date DIV 10000) MOD 100
+        day   := (date DIV 1000000)
+
+        IF(year MOD 4 = 0) THEN
+            num_days_in_month[1] := num_days_in_month[1] + 1
+        END IF
+
+        IF(month <= 12 AND day <= num_days_in_month[month - 1]) THEN
+            CASE day MOD 10
+                1:
+                    suffix := "st"
+                2:
+                    IF(day = 12) THEN
+                        suffix := "th"
+                    ELSE
+                        suffix := "nd"
+                    END IF
+                3:
+                    suffix := "rd"
+                DEFAULT:
+                    suffix := "th"
+            END CASE
+
+            OUTPUT "The day is the " + day + suffix + " of " + months[month - 1] + ", in " + year + "."
+
+            IF (month = 2 AND day == 29) THEN
+                OUTPUT " It's a leapyear!"
+            END IF
+        ELSE
+            OUTPUT "Invalid date."
+        END IF
+    END MAIN
+END SplitMyDate
