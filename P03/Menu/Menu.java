@@ -1,6 +1,6 @@
 /* *
  * Luke McDougall, 17179492
- * Simple command line based menu program.
+ * Simple command line menu program.
  * Last Updated 31/03/2020
  */
 import java.util.*;
@@ -145,7 +145,7 @@ public class Menu
                 date = input.nextInt();
                 year = date % 10000;
                 month = (date / 10000) % 100;
-                day = (date / 1000000);
+                day = date / 1000000;
 
                 // Add extra day to February if it is a leap year
                 if(year % 4 == 0)
