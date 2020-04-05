@@ -1,0 +1,15 @@
+Program MatrixMultiplication
+    MAIN:
+        IF ((SIZE OF ma[0]) = (SIZE OF mb))
+            mc := ARRAY OF ARRAY OF Integer OF SIZE (SIZE OF mb[0]) OF SIZE (SIZE OF ma)
+            FOR i := 0 TO (SIZE OF mc) (exclusive) INC BY 1
+                FOR j := 0 TO (SIZE OF mc[0]) (exclusive) INC BY 1
+                    mc[i][j] := 0
+                    FOR idx := 0 TO (SIZE OF mb) (exclusive) INC BY 1
+                        mc[i][j] += (ma[i][idx] * mb[idx][j]);
+                    END FOR
+                END FOR
+            END FOR
+        END IF
+    END MAIN
+END MatrixMultiplication

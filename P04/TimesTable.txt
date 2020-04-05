@@ -1,0 +1,44 @@
+Program TimesTable
+    MAIN:
+        errorMessage := ""
+        DO
+            OUTPUT errorMessage
+
+            OUTPUT "Enter the number of rows: "
+            INPUT rows
+
+            OUTPUT "Enter the number of columns: "
+            INPUT cols
+
+            errorMessage := "Rows and columns must be greater than zero."
+        WHILE (rows < 1 OR cols < 1)
+
+        table := ARRAY OF ARRAY OF Integer OF SIZE cols OF SIZE rows
+
+        FOR i := 1 TO rows (inclusive) INC BY 1
+            FOR j := 1 TO cols (inclusive) INC BY 1
+                table[i - 1][j - 1] := i * j
+            END FOR
+        END FOR
+
+        OUTPUT "The " + rows + " x " + cols + " times tables."
+
+        OUTPUT "  | "
+        FOR i := 1 TO cols (inclusive) INC BY 1
+            OUTPUT i
+        END FOR
+
+        FOR _i := 0 TO cols + 1 (exclusive) INC BY 1
+            OUTPUT "----"
+        END FOR
+
+        row := 1
+        FOR arr IN table
+            OUTPUT row
+            row := row + 1
+            FOR e IN arr
+                OUTPUT e
+            END FOR
+        END FOR
+    END MAIN
+END TimesTable

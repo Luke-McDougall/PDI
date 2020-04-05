@@ -1,7 +1,7 @@
 /* *
  * Luke McDougall, 17179492
  * Simple command line menu program.
- * Last Updated 31/03/2020
+ * Last Updated 05/04/2020
  */
 import java.util.*;
 
@@ -10,20 +10,22 @@ public class Menu
     public static void main(String[] args)
     {
         Scanner input = new Scanner(System.in);
-        boolean running = true;
+
+        // Boolean used to determine when to exit the main loop
+        boolean running = true; 
 
         do
         {
-            String prompt = "What would you like to do?\n" +
-                               "    > 1. Sum of two integers.\n" +
-                               "    > 2. Convert Temperature.\n" +
-                               "    > 3. Convert a characters case.\n" +
-                               "    > 4. Print the ascii value of a character.\n" +
-                               "    > 5. Check if two integers are divisible.\n" +
-                               "    > 6. Split a Date into it's components.\n" +
-                               "    > 0. Exit.";
-            String out = prompt;
             int menu_choice = -1;
+            String prompt = "What would you like to do?\n" +
+                            "    > 1. Sum of two integers.\n" +
+                            "    > 2. Convert Temperature.\n" +
+                            "    > 3. Convert a characters case.\n" +
+                            "    > 4. Print the ascii value of a character.\n" +
+                            "    > 5. Check if two integers are divisible.\n" +
+                            "    > 6. Split a Date into it's components.\n" +
+                            "    > 0. Exit.";
+            String out = prompt;
             do
             {
                 System.out.println(out);
@@ -37,6 +39,7 @@ public class Menu
                 {
                     running = false;
                 } break;
+
                 case 1:
                 {
                     int a, b, sum;
@@ -56,25 +59,24 @@ public class Menu
                 {
                     double celsius, fahrenheit;
 
-                    String temp_prompt = "What temperature scale are you working with?\n" + 
+                    prompt = "What temperature scale are you working with?\n" + 
                                     "    > (C)elsius\n" +
                                     "    > (F)ahrenheit\n";
-                    String temp_out = temp_prompt;
-                    char temp_choice = 'z';
+                    out = prompt;
+                    char choice = 'z';
 
                     input.nextLine();
                     do
                     {
-                        System.out.print(temp_out);
-                        temp_choice = input.nextLine().charAt(0);
-                        temp_out = "Enter c/C or f/F.\n" + temp_prompt;
-                    } while(temp_choice != 'c' && 
-                            temp_choice != 'C' && 
-                            temp_choice != 'f' && 
-                            temp_choice != 'F');
+                        System.out.print(out);
+                        choice = input.nextLine().charAt(0);
+                        out = "Enter c/C or f/F.\n" + prompt;
+                    } while(choice != 'c' && 
+                            choice != 'C' && 
+                            choice != 'f' && 
+                            choice != 'F');
 
-
-                    if(temp_choice == 'c' || temp_choice == 'C')
+                    if(choice == 'c' || choice == 'C')
                     {
                         System.out.print("Enter the celsius value: ");
                         celsius = input.nextDouble();
@@ -92,18 +94,22 @@ public class Menu
 
                 case 3:
                 {
-                    char character;
                     int ascii;
                     
-                    System.out.print("Enter a character: ");
+                    prompt = "Enter a character: ";
+                    out = prompt;
+                    char choice = '%'; // % has no particular siginificance, it's just an invalid input.
 
-                    // input.nextLine().charAt(0) will throw a StringIndexOutOfBounds exception
-                    // if I don't have the following code. I have no idea why
                     input.nextLine(); 
+                    do
+                    {
+                        System.out.print(out);
+                        choice = input.nextLine().charAt(0);
+                        out = "Enter an alphabetic character\n" + prompt;
+                    } while(!(choice >= 'a' && choice <= 'z') &&
+                            !(choice >= 'A' && choice <= 'Z'));
 
-                    character = input.nextLine().charAt(0);
-
-                    ascii = (int) character;
+                    ascii = (int) choice;
 
                     if(ascii >= 'a' && ascii <= 'z')
                     {
@@ -118,19 +124,23 @@ public class Menu
 
                 case 4:
                 {
-                    char character;
                     int ascii;
                     
-                    System.out.print("Enter a character: ");
+                    prompt = "Enter a character: ";
+                    out = prompt;
+                    char choice = '%'; // % has no particular siginificance, it's just an invalid input.
 
-                    // input.nextLine().charAt(0) will throw a StringIndexOutOfBounds exception
-                    // if I don't have the following code. I have no idea why
                     input.nextLine(); 
+                    do
+                    {
+                        System.out.print(out);
+                        choice = input.nextLine().charAt(0);
+                        out = "Enter an alphabetic character\n" + prompt;
+                    } while(!(choice >= 'a' && choice <= 'z') &&
+                            !(choice >= 'A' && choice <= 'Z'));
                     
-                    character = input.nextLine().charAt(0);
-
-                    ascii = (int) character;
-                    System.out.println("The ascii value of " + character + " is " + ascii);
+                    ascii = (int) choice;
+                    System.out.println("The ascii value of " + choice + " is " + ascii);
                 } break;
 
                 case 5:
@@ -140,8 +150,14 @@ public class Menu
                     System.out.print("Enter the first integer: ");
                     a = input.nextInt();
 
-                    System.out.print("Enter the second integer: ");
-                    b = input.nextInt();
+                    prompt = "Enter the second integer: ";
+                    out = prompt;
+                    do
+                    {
+                        System.out.print(out);
+                        b = input.nextInt();
+                        out = "denominator cannot be 0.\n";
+                    } while(b == 0);
 
                     if(a % b == 0)
                     {
@@ -155,7 +171,6 @@ public class Menu
 
                 case 6:
                 {
-
                     int date, year, month, day;
                     String[] months = {"January", "February", "March", "April", "May", "June",
                                        "July", "August", "September", "October", "November", "December"};
@@ -224,4 +239,3 @@ public class Menu
         } while(running);
     }
 }
-

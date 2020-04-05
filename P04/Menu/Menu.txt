@@ -1,112 +1,150 @@
 START Menu
     MAIN:
-        OUTPUT "What would you like to do?
-                    > 1. Sum of two integers.
-                    > 2. Convert Temperature.
-                    > 3. Convert a characters case.
-                    > 4. Print the ascii value of a character.
-                    > 5. Check if two integers are divisible.
-                    > 6. Split a Date into it's components.
-                    > 0. Exit."
+        running := true
 
-        INPUT menu_choice (Integer)
+        DO
+            prompt := "What would you like to do?
+                        > 1. Sum of two integers.
+                        > 2. Convert Temperature.
+                        > 3. Convert a characters case.
+                        > 4. Print the ascii value of a character.
+                        > 5. Check if two integers are divisible.
+                        > 6. Split a Date into it's components.
+                        > 0. Exit."
+            out := prompt
 
-        CASE menu_choice
-            1:
-                OUTPUT "Enter the first integer: "
-                INPUT a (Integer)
+            DO
+                OUTPUT out
+                INPUT menu_choice (Integer)
+                out := "Please enter a number between 0 and 6" + prompt
+            WHILE (menu_choice < 0 || menu_choice > 6)
 
-                OUTPUT "Enter the second integer: "
-                INPUT b (Integer)
+            CASE menu_choice
+                0:
+                    running := false
+                1:
+                    OUTPUT "Enter the first integer: "
+                    INPUT a (Integer)
 
-                sum := a + b
+                    OUTPUT "Enter the second integer: "
+                    INPUT b (Integer)
 
-                OUTPUT "The sum of " + a + " and " + b + " is " + sum
-            2:
-                OUTPUT "What temperature scale are you working with?"
-                            > (C)elsius
-                            > (F)ahrenheit"
-                INPUT choice (Character)
+                    sum := a + b
 
-                IF(choice = 'c' OR choice = 'C') THEN
-                    OUTPUT "Enter the celsius value: "
-                    INPUT celsius (Real)
-                    fahrenheit := (9.0 / 5.0) * celsius + 32.0
-                    OUTPUT celsius + " degrees Celsius = " + fahrenheit + " degrees Fahrenheit"
-                ELSE IF(choice = 'f' OR choice = 'F') THEN
-                    OUTPUT "Enter the fahrenheit value: "
-                    INPUT fahrenheit (Real)
-                    celsius := (5.0 / 9.0) * (fahrenheit - 32.0)
-                    OUTPUT fahrenheit + " degrees Fahrenheit = " + celsius + " degrees Celsius"
-                END IF
-            3:
-                INPUT character (Character)
+                    OUTPUT "The sum of " + a + " and " + b + " is " + sum
+                2:
+                    prompt := "What temperature scale are you working with?"
+                                > (C)elsius
+                                > (F)ahrenheit"
+                    out := prompt
+                    DO
+                        OUTPUT out
+                        INPUT choice (Character)
+                        out := "Enter c/C or f/F." + prompt
+                    WHILE (choice != 'c' AND
+                           choice != 'C' AND
+                           choice != 'f' AND
+                           choice != 'F')
 
-                ascii := (Convert to Integer) character;
-
-                IF(ascii >= 'a' AND ascii <= 'z') THEN
-                    ascii := ascii - 32
-                ELSE IF(ascii >= 'A' AND ascii <= 'Z') THEN
-                    ascii := ascii + 32
-                OUTPUT "The new character is " + (char) ascii
-            4:
-                OUTPUT "Enter a character: "
-
-                INPUT character (Character)
-
-                ascii := (int) character
-                OUTPUT "The ascii value of " + character + " is " + ascii
-            5:
-                OUTPUT "Enter the first integer: "
-                INPUT a (Integer)
-
-                OUTPUT "Enter the second integer: "
-                INPUT b (Integer)
-
-                IF(a MOD b = 0) THEN
-                    OUTPUT a + " is divisible by " + b
-                ELSE
-                    OUTPUT a + " is not divisible by " + b
-                END IF
-            6:
-                months = ["January", "February", "March", "April", "May", "June",
-                        "July", "August", "September", "October", "November", "December"]
-                num_days_in_month = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
-
-                INPUT "Please enter the date in the format DDMMYYYY"
-                INPUT date (Integer)
-                year  := date MOD 10000
-                month := (date DIV 10000) MOD 100
-                day   := (date DIV 1000000)
-
-                IF(year MOD 4 = 0) THEN
-                    num_days_in_month[1] := num_days_in_month[1] + 1
-                END IF
-
-                IF(month <= 12 AND day <= num_days_in_month[month - 1]) THEN
-                    CASE day MOD 10
-                        1:
-                            suffix := "st"
-                        2:
-                            IF(day = 12) THEN
-                                suffix := "th"
-                            ELSE
-                                suffix := "nd"
-                            END IF
-                        3:
-                            suffix := "rd"
-                        DEFAULT:
-                            suffix := "th"
-                    END CASE
-
-                    OUTPUT "The day is the " + day + suffix + " of " + months[month - 1] + ", in " + year + "."
-
-                    IF (month = 2 AND day == 29) THEN
-                        OUTPUT " It's a leapyear!"
+                    IF(choice = 'c' OR choice = 'C') THEN
+                        OUTPUT "Enter the celsius value: "
+                        INPUT celsius (Real)
+                        fahrenheit := (9.0 / 5.0) * celsius + 32.0
+                        OUTPUT celsius + " degrees Celsius = " + fahrenheit + " degrees Fahrenheit"
+                    ELSE IF(choice = 'f' OR choice = 'F') THEN
+                        OUTPUT "Enter the fahrenheit value: "
+                        INPUT fahrenheit (Real)
+                        celsius := (5.0 / 9.0) * (fahrenheit - 32.0)
+                        OUTPUT fahrenheit + " degrees Fahrenheit = " + celsius + " degrees Celsius"
                     END IF
-                ELSE
-                    OUTPUT "Invalid date."
-                END IF
-        END CASE
+                3:
+                    prompt := "Enter a character"
+                    out := prompt
+                    DO
+                        OUTPUT out
+                        INPUT choice (Character)
+                        out := "Enter an alphabetic character." + prompt
+                    WHILE ( (choice < 'A') OR
+                            (choice > 'Z' AND choice < 'a') OR
+                            (choice > 'z') )
+
+                    ascii := (Convert to Integer) character;
+
+                    IF(ascii >= 'a' AND ascii <= 'z') THEN
+                        ascii := ascii - 32
+                    ELSE IF(ascii >= 'A' AND ascii <= 'Z') THEN
+                        ascii := ascii + 32
+                    OUTPUT "The new character is " + (Convert to Character) ascii
+                4:
+                    prompt := "Enter a character"
+                    out := prompt
+                    DO
+                        OUTPUT out
+                        INPUT choice (Character)
+                        out := "Enter an alphabetic character." + prompt
+                    WHILE ( (choice < 'A') OR
+                            (choice > 'Z' AND choice < 'a') OR
+                            (choice > 'z') )
+
+                    ascii := (Convert to Integer) choice
+                    OUTPUT "The ascii value of " + choice + " is " + ascii
+                5:
+                    OUTPUT "Enter the first integer: "
+                    INPUT a (Integer)
+
+                    prompt := "Enter the second integer: "
+                    out := prompt
+                    DO
+                        OUTPUT out
+                        INPUT b (Integer)
+                        out := "denominator cannot be 0." + prompt
+                    WHILE (b = 0)
+
+                    IF(a MOD b = 0) THEN
+                        OUTPUT a + " is divisible by " + b
+                    ELSE
+                        OUTPUT a + " is not divisible by " + b
+                    END IF
+                6:
+                    months = ["January", "February", "March", "April", "May", "June",
+                            "July", "August", "September", "October", "November", "December"]
+                    num_days_in_month = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
+
+                    INPUT "Please enter the date in the format DDMMYYYY"
+                    INPUT date (Integer)
+                    year  := date MOD 10000
+                    month := (date DIV 10000) MOD 100
+                    day   := (date DIV 1000000)
+
+                    IF(year MOD 4 = 0) THEN
+                        num_days_in_month[1] := num_days_in_month[1] + 1
+                    END IF
+
+                    IF(month <= 12 AND day <= num_days_in_month[month - 1]) THEN
+                        CASE day MOD 10
+                            1:
+                                suffix := "st"
+                            2:
+                                IF(day = 12) THEN
+                                    suffix := "th"
+                                ELSE
+                                    suffix := "nd"
+                                END IF
+                            3:
+                                suffix := "rd"
+                            DEFAULT:
+                                suffix := "th"
+                        END CASE
+
+                        OUTPUT "The day is the " + day + suffix + " of " + months[month - 1] + ", in " + year + "."
+
+                        IF (month = 2 AND day == 29) THEN
+                            OUTPUT " It's a leapyear!"
+                        END IF
+                    ELSE
+                        OUTPUT "Invalid date."
+                    END IF
+            END CASE
+        WHILE (running)
     END MAIN
 END Menu
